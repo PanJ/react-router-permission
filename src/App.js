@@ -1,6 +1,14 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+import { login } from "./reducers";
+
+const enhance = connect(
+  null,
+  { login }
+);
 
 class App extends Component {
   render() {
@@ -11,18 +19,14 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <button onClick={this.props.login}>Login</button>
+          <Link to="/profile" style={{ color: "white" }}>
+            Go to profile
+          </Link>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+export default enhance(App);
